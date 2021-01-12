@@ -3,9 +3,9 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import userRouter from './routers/userRouter';
-import videoRouter from './routers/videoRouter';
-import globalRouter from './routers/globalRouter';
+import userRouter from './routers/user-router';
+import videoRouter from './routers/video-router';
+import globalRouter from './routers/global-router';
 import routes from './routes';
 
 const app = express();

@@ -1,0 +1,24 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "Cloning Youtube with VanilaJS and NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coseo12/wetube.git"
+  },
+  "keywords": [],
+  "author": "C.O.SEO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coseo12/wetube/issues"
+  },
+  "homepage": "https://github.com/coseo12/wetube#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

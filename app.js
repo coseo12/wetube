@@ -1,8 +1,9 @@
-import express from 'express';
-import morgan from 'morgan';
-import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import express from 'express';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import { localsMiddleware } from './middlewares';
 import userRouter from './routers/user-router';
 import videoRouter from './routers/video-router';
 import globalRouter from './routers/global-router';
@@ -17,10 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(async (req, res, next) => {
-  res.setHeader('Content-Security-Policy', 'script-src kit.fontawesome.com');
-  next();
-});
+app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);

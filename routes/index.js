@@ -1,14 +1,15 @@
 //? Global
 const HOME = '/';
-const GET_JOIN = '/get-join';
-const POST_JOIN = '/post-join';
-const LOGIN = '/login';
+const GET_JOIN = '/join';
+const POST_JOIN = '/join-confirm';
+const GET_LOGIN = '/login';
+const POST_LOGIN = '/login-confirm';
 const LOGOUT = '/logout';
 const SEARCH = '/search';
 
 //? Users
 const USERS = '/users';
-const USER_DETAIL = '/:id/';
+const USER_DETAIL = '/:id';
 const EDIT_PROFILE = '/edit-profile';
 const CHANGE_PASSWORD = '/change-password';
 
@@ -17,24 +18,49 @@ const VIDEOS = '/videos';
 const UPLOAD = '/upload';
 const VIDEO_DETAIL = '/:id';
 const EDIT_VIDEO = '/:id/edit';
-const DELETE_VIDEO = ':id/delete';
+const DELETE_VIDEO = '/:id/delete';
 
 const routes = {
   home: HOME,
   postJoin: POST_JOIN,
   getJoin: GET_JOIN,
-  login: LOGIN,
+  getLogin: GET_LOGIN,
+  postLogin: POST_LOGIN,
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
-  userDetail: USER_DETAIL,
+  userDetail: id => {
+    if (id) {
+      return `${USERS}/${id}`;
+    } else {
+      return USER_DETAIL;
+    }
+  },
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
   videos: VIDEOS,
   upload: UPLOAD,
-  videoDetail: VIDEO_DETAIL,
-  editVideo: EDIT_VIDEO,
-  deleteVideo: DELETE_VIDEO,
+  videoDetail: id => {
+    if (id) {
+      return `${VIDEOS}/${id}`;
+    } else {
+      return VIDEO_DETAIL;
+    }
+  },
+  editVideo: id => {
+    if (id) {
+      return `${VIDEOS}/${id}/edit`;
+    } else {
+      return EDIT_VIDEO;
+    }
+  },
+  deleteVideo: id => {
+    if (id) {
+      return `${VIDEOS}/${id}/delete`;
+    } else {
+      return DELETE_VIDEO;
+    }
+  },
 };
 
 export default routes;

@@ -13,7 +13,9 @@ export const postJoin = (req, res) => {
     res.redirect(routes.getJoin);
   } else {
     // TODO: Register User
+    // ..
     // TODO: User Login
+    // ..
     res.redirect(routes.home);
   }
 };

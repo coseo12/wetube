@@ -15,7 +15,8 @@ const CHANGE_PASSWORD = '/change-password';
 
 //? Videos
 const VIDEOS = '/videos';
-const UPLOAD = '/upload';
+const GET_UPLOAD = '/upload';
+const POST_UPLOAD = '/upload-confirm';
 const VIDEO_DETAIL = '/:id';
 const EDIT_VIDEO = '/:id/edit';
 const DELETE_VIDEO = '/:id/delete';
@@ -39,7 +40,8 @@ const routes = {
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
   videos: VIDEOS,
-  upload: UPLOAD,
+  getUpload: GET_UPLOAD,
+  postUpload: POST_UPLOAD,
   videoDetail: id => {
     if (id) {
       return `${VIDEOS}/${id}`;

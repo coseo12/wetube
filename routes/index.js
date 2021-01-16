@@ -18,7 +18,8 @@ const VIDEOS = '/videos';
 const GET_UPLOAD = '/upload';
 const POST_UPLOAD = '/upload-confirm';
 const VIDEO_DETAIL = '/:id';
-const EDIT_VIDEO = '/:id/edit';
+const GET_EDIT_VIDEO = '/:id/edit';
+const POST_EDIT_VIDEO = '/edit-confirm';
 const DELETE_VIDEO = '/:id/delete';
 
 const routes = {
@@ -53,9 +54,10 @@ const routes = {
     if (id) {
       return `${VIDEOS}/${id}/edit`;
     } else {
-      return EDIT_VIDEO;
+      return GET_EDIT_VIDEO;
     }
   },
+  postEditVideo: POST_EDIT_VIDEO,
   deleteVideo: id => {
     if (id) {
       return `${VIDEOS}/${id}/delete`;

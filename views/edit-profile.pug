@@ -2,7 +2,7 @@ extends layouts/main.pug
 
 block content
     .form-container
-        form(action=`/users${routes.editProfile}` method="post")
+        form(action=`/users${routes.editProfile}` method="post", enctype="multipart/form-data")
             label(for="avatar") Avatar
             input(type="file", name="avatar")
             input(type="text", name="name", placeholder="Name")

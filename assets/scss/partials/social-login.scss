@@ -12,6 +12,16 @@
     &:not(:last-child) {
       margin-bottom: 15px;
     }
+    a {
+      &:visited {
+        text-decoration: none;
+        color: white;
+      }
+    }
+    &:link {
+      text-decoration: none;
+      color: white;
+    }
     span {
       margin-right: 10px;
       font-size: 20px;

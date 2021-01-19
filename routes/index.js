@@ -22,6 +22,10 @@ const GET_EDIT_VIDEO = '/:id/edit';
 const POST_EDIT_VIDEO = '/edit-confirm';
 const DELETE_VIDEO = '/:id/delete';
 
+// ? Github
+const GITHUB = '/auth/github';
+const GITHUB_CALLBACK = '/auth/github/callback';
+
 const routes = {
   home: HOME,
   postJoin: POST_JOIN,
@@ -31,7 +35,7 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
-  userDetail: (id) => {
+  userDetail: id => {
     if (id) {
       return `${USERS}/${id}`;
     }
@@ -42,25 +46,27 @@ const routes = {
   videos: VIDEOS,
   getUpload: GET_UPLOAD,
   postUpload: POST_UPLOAD,
-  videoDetail: (id) => {
+  videoDetail: id => {
     if (id) {
       return `${VIDEOS}/${id}`;
     }
     return VIDEO_DETAIL;
   },
-  editVideo: (id) => {
+  editVideo: id => {
     if (id) {
       return `${VIDEOS}/${id}/edit`;
     }
     return GET_EDIT_VIDEO;
   },
   postEditVideo: POST_EDIT_VIDEO,
-  deleteVideo: (id) => {
+  deleteVideo: id => {
     if (id) {
       return `${VIDEOS}/${id}/delete`;
     }
     return DELETE_VIDEO;
   },
+  github: GITHUB,
+  githubCallback: GITHUB_CALLBACK,
 };
 
 export default routes;

@@ -4,4 +4,4 @@ import User from '../models/User';
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
-passport.serializeUser(User.deserializeUser());
+passport.deserializeUser(User.deserializeUser());

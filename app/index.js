@@ -3,11 +3,11 @@ import cookieParser from 'cookie-parser';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { localsMiddleware } from './middlewares';
-import userRouter from './routers/user-router';
-import videoRouter from './routers/video-router';
-import globalRouter from './routers/global-router';
-import routes from './routes';
+import { localsMiddleware } from '../middlewares';
+import userRouter from '../routers/user-router';
+import videoRouter from '../routers/video-router';
+import globalRouter from '../routers/global-router';
+import routes from '../routes';
 
 const app = express();
 

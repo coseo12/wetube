@@ -38,7 +38,10 @@ export const postUpload = async (req, res) => {
       fileUrl: path,
       title,
       description,
+      creator: req.user.id,
     });
+    req.user.videos.push(newVideo.id);
+    req.user.save();
     res.redirect(routes.videoDetail(newVideo.id));
   } catch (error) {
     res.redirect(routes.home);
@@ -50,7 +53,7 @@ export const videoDetail = async (req, res) => {
     const {
       params: { id },
     } = req;
-    const video = await Video.findById(id);
+    const video = await Video.findById(id).populate('creator');
     res.render('video-detail', { pageTitle: 'Video Detail', video });
   } catch (error) {
     res.redirect(routes.home);

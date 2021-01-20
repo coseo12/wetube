@@ -10,7 +10,8 @@ const SEARCH = '/search';
 // ? Users
 const USERS = '/users';
 const USER_DETAIL = '/:id';
-const EDIT_PROFILE = '/edit-profile';
+const GET_EDIT_PROFILE = '/edit-profile';
+const POST_EDIT_PROFILE = '/edit-confirm';
 const CHANGE_PASSWORD = '/change-password';
 const ME = '/me';
 
@@ -46,7 +47,8 @@ const routes = {
     }
     return USER_DETAIL;
   },
-  editProfile: EDIT_PROFILE,
+  editProfile: GET_EDIT_PROFILE,
+  postEditProfile: POST_EDIT_VIDEO,
   changePassword: CHANGE_PASSWORD,
   videos: VIDEOS,
   getUpload: GET_UPLOAD,

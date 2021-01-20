@@ -66,7 +66,11 @@ export const getEditVideo = async (req, res) => {
       params: { id },
     } = req;
     const video = await Video.findById(id);
-    res.render('edit-video', { pageTitle: 'Edit Video', video });
+    if (video.creator !== req.user.id) {
+      throw Error();
+    } else {
+      res.render('edit-video', { pageTitle: 'Edit Video', video });
+    }
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -89,8 +93,13 @@ export const deleteVideo = async (req, res) => {
     const {
       params: { id },
     } = req;
-    await Video.findOneAndRemove(id);
-    res.redirect(routes.home);
+    const video = await Video.findById(id);
+    if (video.creator !== req.user.id) {
+      throw Error();
+    } else {
+      await Video.findOneAndRemove(id);
+      res.redirect(routes.home);
+    }
   } catch (error) {
     res.redirect(routes.home);
   }

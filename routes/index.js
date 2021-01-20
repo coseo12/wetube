@@ -12,7 +12,8 @@ const USERS = '/users';
 const USER_DETAIL = '/:id';
 const GET_EDIT_PROFILE = '/edit-profile';
 const POST_EDIT_PROFILE = '/edit-confirm';
-const CHANGE_PASSWORD = '/change-password';
+const GET_CHANGE_PASSWORD = '/change-password';
+const POST_CHANGE_PASSWORD = '/change-confirm';
 const ME = '/me';
 
 // ? Videos
@@ -48,8 +49,9 @@ const routes = {
     return USER_DETAIL;
   },
   editProfile: GET_EDIT_PROFILE,
-  postEditProfile: POST_EDIT_VIDEO,
-  changePassword: CHANGE_PASSWORD,
+  postEditProfile: POST_EDIT_PROFILE,
+  changePassword: GET_CHANGE_PASSWORD,
+  postChangePassword: POST_CHANGE_PASSWORD,
   videos: VIDEOS,
   getUpload: GET_UPLOAD,
   postUpload: POST_UPLOAD,

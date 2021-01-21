@@ -1,5 +1,6 @@
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -14,11 +15,13 @@ import globalRouter from '../routers/global-router';
 import routes from '../routes';
 
 import '../api/passport';
+import apiRouter from '../routers/api-router';
 
 const app = express();
 
 const CookieStore = MongoStore(session);
 
+app.use(cors());
 app.use(helmet({ contentSecurityPolicy: false }));
 app.set('view engine', 'pug');
 app.use('/uploads', express.static('uploads'));
@@ -44,5 +47,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 
 export default app;

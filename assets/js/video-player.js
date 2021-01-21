@@ -1,5 +1,12 @@
 const videoContainer = document.querySelector('#js-video-player');
 
+const registerView = () => {
+  const [_, id] = window.location.pathname.split('/videos/');
+  fetch(`/api/${id}/view`, {
+    method: 'POST',
+  });
+};
+
 const handlePlayClick = (videoPlayer, playBtn) => () => {
   if (videoPlayer.paused) {
     videoPlayer.play();
@@ -61,10 +68,11 @@ const setCurrentTime = (currentTime, videoPlayer) => () => {
   currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 };
 
-const handleEnded = (videoPlayer, currentTime) => () => {
+const handleEnded = (videoPlayer, currentTime, playBtn) => () => {
   videoPlayer.currentTime = 0;
   currentTime.innerHTML = formatDate(videoPlayer.currentTime);
   playBtn.innerHTML = `<i class="fas fa-play"></i>`;
+  registerView();
 };
 
 const handleDrag = (videoPlayer, volumeBtn) => event => {
@@ -106,7 +114,10 @@ const init = () => {
     'timeupdate',
     setCurrentTime(currentTime, videoPlayer)
   );
-  videoPlayer.addEventListener('ended', handleEnded(videoPlayer, currentTime));
+  videoPlayer.addEventListener(
+    'ended',
+    handleEnded(videoPlayer, currentTime, playBtn)
+  );
   volumeRange.addEventListener('input', handleDrag(videoPlayer, volumeBtn));
 };
 

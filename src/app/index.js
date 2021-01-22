@@ -23,9 +23,10 @@ const CookieStore = MongoStore(session);
 
 app.use(cors());
 app.use(helmet({ contentSecurityPolicy: false }));
+app.set('views', 'src/views');
 app.set('view engine', 'pug');
-app.use('/uploads', express.static('uploads'));
-app.use('/static', express.static('static'));
+app.use('/uploads', express.static('src/uploads'));
+app.use('/static', express.static('src/static'));
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,

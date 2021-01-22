@@ -1,7 +1,10 @@
 const path = require('path');
 const MODE = process.env.WEBPACK_ENV;
-const ENTRY_FILE = path.resolve(__dirname, 'assets', 'js', 'main.js');
-const OUTPUT_DIR = path.join(__dirname, 'static');
+const ENTRY_FILE = path.resolve(__dirname, 'src/assets', 'js', 'main.js');
+const OUTPUT_DIR = path.join(
+  __dirname,
+  process.env.WEBPACK_ENV !== 'production' ? 'src/static' : 'build/static'
+);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {

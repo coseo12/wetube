@@ -116,4 +116,5 @@ dist
 .pnp.*
 
 uploads
+build
 static

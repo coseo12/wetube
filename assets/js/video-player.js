@@ -1,3 +1,5 @@
+import getBlobDuration from 'get-blob-duration';
+
 const videoContainer = document.querySelector('#js-video-player');
 
 const registerView = () => {
@@ -60,8 +62,10 @@ const formatDate = seconds => {
     .padStart(2, '0')}:${totalSeconds.toString().padStart(2, '0')}`;
 };
 
-const setTotalTime = (totalTime, videoPlayer) => () => {
-  totalTime.innerHTML = formatDate(videoPlayer.duration);
+const setTotalTime = (totalTime, videoPlayer) => async () => {
+  const blob = await fetch(videoPlayer.src).then(res => res.blob());
+  const duration = await getBlobDuration(blob);
+  totalTime.innerHTML = formatDate(duration);
 };
 
 const setCurrentTime = (currentTime, videoPlayer) => () => {

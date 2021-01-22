@@ -7,9 +7,8 @@
     "dev:server": "nodemon --exec babel-node src/init.js --delay 2 --ignore 'scss'",
     "dev:assets": "WEBPACK_ENV=development webpack -w",
     "build:assets": "WEBPACK_ENV=production webpack",
-    "build:server": "babel src --out-dir build --ignore 'src/assets', 'src/static'",
+    "build:server": "babel src --out-dir build --ignore 'src/assets' --ignore 'src/static'",
     "build": "npm run build:server && npm run build:assets",
-    "prebuild": "rm -rf build",
     "tunnel": "lt --port 4000",
     "start": "node build/init.js",
     "prestart": "npm run build"
@@ -42,6 +41,10 @@
     "cors": "^2.8.5",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "get-blob-duration": "^1.1.2",
@@ -51,6 +54,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
+    "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-github": "^1.1.0",
@@ -64,13 +68,7 @@
     "webpack": "^5.15.0",
     "webpack-cli": "^4.3.1"
   },
-  "devDependencies": {
-    "eslint": "^7.18.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.7"
-  },
+  "devDependencies": {},
   "browserslist": [
     "cover 99.5%"
   ]

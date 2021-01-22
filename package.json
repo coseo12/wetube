@@ -9,6 +9,7 @@
     "build:assets": "WEBPACK_ENV=production webpack",
     "build:server": "babel src --out-dir build --ignore 'src/assets', 'src/static'",
     "build": "npm run build:server && npm run build:assets",
+    "start": "PRODUCTION=true node build/init.js",
     "prestart": "npm run build"
   },
   "repository": {

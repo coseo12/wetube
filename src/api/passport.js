@@ -15,7 +15,11 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: `http://localhost:4000${routes.githubCallback}`,
+      callbackURL: `${
+        process.env.MONGO_URL
+          ? 'http://localhost:4000'
+          : 'https://s-wetube-v1.herokuapp.com/'
+      }${routes.githubCallback}`,
     },
     githubLoginCallback
   )
@@ -26,7 +30,7 @@ passport.use(
     {
       clientID: process.env.FB_ID,
       clientSecret: process.env.FB_SECRET,
-      callbackURL: `http://localhost:4000${routes.fbCallback}`,
+      callbackURL: `${routes.fbCallback}`,
     },
     fbLoginCallback
   )

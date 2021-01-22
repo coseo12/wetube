@@ -8,7 +8,8 @@
     "dev:assets": "WEBPACK_ENV=development webpack -w",
     "build:assets": "WEBPACK_ENV=production webpack",
     "build:server": "babel src --out-dir build --ignore 'src/assets', 'src/static'",
-    "build": "npm run build:server && npm run build:assets"
+    "build": "npm run build:server && npm run build:assets",
+    "prestart": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "pug": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/node": "^7.12.10",
     "@babel/plugin-transform-runtime": "^7.12.10",

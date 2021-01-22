@@ -12,6 +12,7 @@ export const postJoin = async (req, res, next) => {
       body: { name, email, password, password2 },
     } = req;
     if (password !== password2) {
+      req.flash('error', `password don't match`);
       res.status(400);
       res.redirect(routes.getJoin);
     } else {
@@ -34,9 +35,14 @@ export const getLogin = (req, res) => {
 export const postLogin = passport.authenticate('local', {
   failureRedirect: routes.getLogin,
   successRedirect: routes.home,
+  successFlash: 'Welcome',
+  failureFlash: `Can't log in. Check email or password`,
 });
 
-export const githubLogin = passport.authenticate('github');
+export const githubLogin = passport.authenticate('github', {
+  successFlash: 'Welcome',
+  failureFlash: `Can't log in at this time`,
+});
 
 export const githubLoginCallback = async (
   accessToken,
@@ -67,6 +73,7 @@ export const githubLoginCallback = async (
 };
 
 export const postGithubLogin = (req, res) => {
+  req.flash('sucess', 'Welcome');
   res.redirect(routes.home);
 };
 
@@ -79,7 +86,6 @@ export const fbLoginCallback = async (
   cb
 ) => {
   try {
-    console.log(accessToken, refreshToken, profile);
   } catch (error) {
     return cb(error);
   }
@@ -90,6 +96,7 @@ export const postFbLogin = (req, res) => {
 };
 
 export const logout = (req, res) => {
+  req.flash(`info`, 'Logged out, see you later');
   req.logout();
   res.redirect(routes.home);
 };
@@ -106,6 +113,7 @@ export const userDetail = async (req, res) => {
     const user = await User.findById(id).populate('videos');
     res.render('user-detail', { pageTitle: 'User Detail', user });
   } catch (error) {
+    req.flash(`error`, `User not found`);
     res.redirect(routes.home);
   }
 };
@@ -124,8 +132,11 @@ export const postEditProfile = async (req, res) => {
       email,
       avatarUrl: file ? `/${file.location}` : req.user.avatarUrl,
     });
+
+    req.flash(`success`, `Profile updated`);
     res.redirect(`/users${routes.me}`);
   } catch (error) {
+    req.flash(`error`, `Error can't update profile`);
     res.render('edit-profle', { pageTitle: 'Edit Profile' });
   }
 };
@@ -140,14 +151,15 @@ export const postChangePassword = async (req, res) => {
       body: { oldPassword, newPassword, newPassword1 },
     } = req;
     if (newPassword !== newPassword1) {
+      req.flash(`error`, `Password don't match`);
       res.status(400);
       res.redirect(`/users${routes.changePassword}`);
       return;
     }
     req.user.changePassword(oldPassword, newPassword);
-
     res.redirect(`/users${routes.me}`);
   } catch (error) {
+    req.flash(`error`, `Can't change password`);
     res.render('change-password', { pageTitle: 'Change Password' });
   }
 };

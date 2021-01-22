@@ -18,7 +18,7 @@ passport.use(
       callbackURL: `${
         process.env.MONGO_URL
           ? 'http://localhost:4000'
-          : 'https://s-wetube-v1.herokuapp.com/'
+          : 'https://s-wetube-v1.herokuapp.com'
       }${routes.githubCallback}`,
     },
     githubLoginCallback

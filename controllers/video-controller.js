@@ -35,9 +35,6 @@ export const postUpload = async (req, res) => {
       body: { title, description },
       file: { location },
     } = req;
-
-    console.log(req.file);
-
     const newVideo = await Video.create({
       fileUrl: location,
       title,
